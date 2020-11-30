@@ -1,0 +1,15 @@
+{{- if not .Values.global.volume.enable }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  labels:
+    app: {{ include "xxl-mq.fullname" . }}
+    component: {{ include "xxl-mq.fullname" . }}
+  name: {{ include "xxl-mq.fullname" . }}-data-volume
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+{{- end }}
